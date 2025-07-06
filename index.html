@@ -1,0 +1,1852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Franklin | Web Design Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <!-- Add EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #8b5cf6;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --success: #10b981;
+            --card-bg: #ffffff;
+            --section-bg: #f1f5f9;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header & Navigation - FIXED */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--dark);
+        }
+        
+        .logo-text span {
+            color: var(--primary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        nav a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover:after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        
+        /* Improved Get in Touch Button */
+        .nav-cta {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.8rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+        }
+        
+        .nav-cta:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(37, 99, 235, 0.3);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 10rem 0 5rem;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+        
+        .hero h1 span {
+            color: var(--primary);
+        }
+        
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            border: none;
+            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(37, 99, 235, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 0.7rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .stat-value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .stat-label {
+            color: var(--gray);
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+        }
+        
+        .hero-image {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 45%;
+            max-width: 600px;
+            z-index: 1;
+            border-radius: 10px;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            font-weight: 700;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 6rem 0;
+            background-color: var(--card-bg);
+        }
+        
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+        
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .section-subtitle {
+            color: var(--gray);
+            font-size: clamp(1rem, 2vw, 1.1rem);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background: var(--section-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+        }
+        
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 1.8rem;
+        }
+        
+        .service-title {
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .service-description {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+        
+        /* Portfolio Section */
+        .portfolio {
+            padding: 6rem 0;
+            background-color: var(--section-bg);
+        }
+        
+        .portfolio-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .portfolio-item {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .portfolio-img {
+            height: 250px;
+            background: linear-gradient(45deg, #6366f1, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+        }
+        
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+        
+        .portfolio-category {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            margin-bottom: 0.5rem;
+        }
+        
+        .portfolio-title {
+            font-size: clamp(1.2rem, 2vw, 1.4rem);
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .portfolio-stats {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--success);
+            font-weight: 500;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 6rem 0;
+            background-color: var(--card-bg);
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background: var(--section-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            position: relative;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .testimonial-card:before {
+            content: """;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: clamp(3rem, 6vw, 5rem);
+            color: var(--primary);
+            opacity: 0.1;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .testimonial-content {
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+        }
+        
+        .author-info h4 {
+            color: var(--dark);
+            margin-bottom: 0.2rem;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+        }
+        
+        .author-info p {
+            color: var(--gray);
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+        }
+        
+        /* Contact */
+        .contact {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 4rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .contact-method {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+        }
+        
+        .contact-details h4 {
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            font-size: clamp(1rem, 2vw, 1.1rem);
+        }
+        
+        .contact-details p {
+            color: var(--gray);
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark);
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-col h4 {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-col h4:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #334155;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: background 0.3s;
+            font-size: 1rem;
+        }
+        
+        .social-link:hover {
+            background: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+        }
+        
+        /* Service Pages */
+        .service-page {
+            display: none;
+            padding: 8rem 0 4rem;
+            background: var(--light);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            min-height: 100vh;
+            z-index: 900;
+            overflow-y: auto;
+        }
+        
+        .service-header {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            text-align: center;
+        }
+        
+        .service-hero {
+            height: 400px;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-bottom: 3rem;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .service-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .service-content h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+        
+        .service-content p {
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            line-height: 1.7;
+        }
+        
+        .service-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .feature-card {
+            background: var(--section-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .feature-description {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .back-button {
+            display: inline-block;
+            margin-top: 2rem;
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s;
+            cursor: pointer;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .back-button:hover {
+            background: var(--primary-dark);
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-image {
+                position: relative;
+                width: 100%;
+                max-width: 100%;
+                transform: none;
+                margin-top: 2rem;
+                height: 300px;
+            }
+            
+            .hero {
+                padding: 8rem 0 3rem;
+                text-align: center;
+            }
+            
+            .hero-content {
+                max-width: 100%;
+            }
+            
+            .hero-buttons, .hero-stats {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--card-bg);
+                flex-direction: column;
+                padding: 1.5rem 0;
+                box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+                gap: 1rem;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                padding: 0.8rem 2rem;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .nav-cta {
+                display: block;
+                margin: 1rem auto 0;
+                width: 80%;
+                text-align: center;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .header-container {
+                position: relative;
+            }
+            
+            .contact-container {
+                gap: 2rem;
+            }
+            
+            .contact-form {
+                padding: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .hero-stats {
+                gap: 1.5rem;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo-text {
+                font-size: 1.2rem;
+            }
+        }
+        
+        /* Notification Styles */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 2000;
+            transform: translateX(120%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification.success {
+            background-color: var(--success);
+            border-left: 5px solid #0d9b6c;
+        }
+        
+        .notification.error {
+            background-color: #ef4444;
+            border-left: 5px solid #dc2626;
+        }
+        
+        .form-loading {
+            position: relative;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+        
+        .form-loading:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.7);
+            z-index: 1;
+        }
+        
+        .form-loading .btn-primary:after {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with fixed navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">F</div>
+                <div class="logo-text">Frank<span>Design</span></div>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Notification area -->
+    <div id="notificationArea"></div>
+
+    <!-- Home Page Content -->
+    <div id="homePage">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Web Design Solutions for <span>High-Growth Businesses</span></h1>
+                    <p>I create conversion-focused websites that help travel brands and SaaS startups attract more customers and increase revenue.</p>
+                    <div class="hero-buttons">
+                        <a href="#portfolio" class="btn-primary">See My Work</a>
+                        <a href="#services" class="btn-secondary">Learn More</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">24+</div>
+                            <div class="stat-label">Projects Completed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">100%</div>
+                            <div class="stat-label">Client Satisfaction</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">48h</div>
+                            <div class="stat-label">Urgent Fixes</div>
+                        </div>
+                    </div>
+                </div>
+             
+        </section>
+
+        <!-- Services Section -->
+        <section class="services" id="services">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Specialized Design Services</h2>
+                    <p class="section-subtitle">I focus on solutions that directly impact your business growth and revenue</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-globe-americas"></i>
+                        </div>
+                        <h3 class="service-title">Travel Website Design</h3>
+                        <p class="service-description">Custom-designed websites for travel agencies, tour operators, and destination marketers that convert visitors into booked clients.</p>
+                        <button class="btn-secondary service-link" data-service="travel">Learn More</button>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="service-title">SaaS Dashboard UX</h3>
+                        <p class="service-description">User-centered interface design that improves user engagement and reduces churn for software products.</p>
+                        <button class="btn-secondary service-link" data-service="saas">Learn More</button>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h3 class="service-title">E-commerce Optimization</h3>
+                        <p class="service-description">Design solutions that reduce cart abandonment and increase average order value for online stores.</p>
+                        <button class="btn-secondary service-link" data-service="ecommerce">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<!-- Updated Portfolio Section -->
+<section class="portfolio" id="portfolio">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Featured Projects</h2>
+            <p class="section-subtitle">Real results I've delivered for clients worldwide</p>
+        </div>
+        <div class="portfolio-filters">
+            <button class="filter-btn active">All</button>
+            <button class="filter-btn">Travel</button>
+            <button class="filter-btn">SaaS</button>
+            <button class="filter-btn">E-commerce</button>
+           
+        </div>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <div class="portfolio-img">
+                    <img src="https://i.ibb.co/b5NLxh0H/15-DF72-B6-30-B0-4-EB9-A92-E-6-B56-FD673-BD8.png"alt="Travel Agency Redesign">
+                    <div class="img-overlay">Travel Agency Redesign</div>
+                </div>
+                <div class="portfolio-content">
+                    <div class="portfolio-category">Travel Website</div>
+                    <h3 class="portfolio-title">Luxury Safari Tours</h3>
+                    <p>Complete website redesign that reduced 404 errors by 100% and increased bookings by 35% in first month.</p>
+                    <div class="portfolio-stats">
+                        <div class="stat">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>35% more bookings</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-bolt"></i>
+                            <span>48h turnaround</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-img">
+                    <img src="https://i.ibb.co/v61kcByD/2438890-A-C2-EF-421-D-B7-AF-8-C7-AAE9-D5-AD8.jpg" alt="SaaS Dashboard">
+                    <div class="img-overlay">SaaS Dashboard</div>
+                </div>
+                <div class="portfolio-content">
+                    <div class="portfolio-category">SaaS Product</div>
+                    <h3 class="portfolio-title">Analytics Dashboard UX</h3>
+                    <p>Redesigned user interface that improved task completion rate by 42% and reduced support tickets by 60%.</p>
+                    <div class="portfolio-stats">
+                        <div class="stat">
+                            <i class="fas fa-user-check"></i>
+                            <span>42% better UX</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-wallet"></i>
+                            <span>$12K revenue saved</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-img">
+                    <img src="https://iili.io/FYmR6vI.jpg"alt="E-commerce Store">
+                    <div class="img-overlay">E-commerce Store</div>
+                </div>
+                <div class="portfolio-content">
+                    <div class="portfolio-category">E-commerce</div>
+                    <h3 class="portfolio-title">Boutique Fashion Store</h3>
+                    <p>Mobile-first redesign that decreased bounce rate by 28% and increased conversions by 22% on mobile devices.</p>
+                    <div class="portfolio-stats">
+                        <div class="stat">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>Mobile optimized</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-chart-line"></i>
+                            <span>22% more sales</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Updated Portfolio Image Styles */
+    .portfolio-img {
+        height: 250px;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .portfolio-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    
+    .img-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 10px 15px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+    }
+    
+    .portfolio-item:hover .img-overlay {
+        transform: translateY(0);
+    }
+    
+    .portfolio-item:hover .portfolio-img img {
+        transform: scale(1.05);
+    }
+</style>
+        <!-- Testimonials Section -->
+        <section class="testimonials" id="testimonials">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Client Success Stories</h2>
+                    <p class="section-subtitle">What business owners say about working with me</p>
+                </div>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <p class="testimonial-content">Franklin fixed our broken booking system in less than 24 hours. His understanding of travel website UX is incredible, especially considering his age. We've seen a 40% increase in completed bookings since the redesign.</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">SJ</div>
+                            <div class="author-info">
+                                <h4>Sarah Johnson</h4>
+                                <p>Owner, Luxury Travel Co. (USA)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-content">I was skeptical about working with a young designer overseas, but Franklin delivered exceptional work. He fixed our 404 errors immediately and redesigned our dashboard. Our conversion rate increased by 30% in just two weeks!</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">MR</div>
+                            <div class="author-info">
+                                <h4>Michael Roberts</h4>
+                                <p>CEO, TechStart SaaS (California)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-content">Franklin completely transformed our online store. His attention to detail and understanding of conversion psychology is impressive. Mobile sales are up 25% since the redesign, and he completed everything ahead of schedule.</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">ED</div>
+                            <div class="author-info">
+                                <h4>Emma Davis</h4>
+                                <p>Founder, UrbanFashion Boutique (NYC)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Get in Touch</h2>
+                    <p class="section-subtitle">Have a website emergency or project in mind? Let's talk</p>
+                </div>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Email Me</h4>
+                                <p>franklinodiana1@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Based In</h4>
+                                <p>Serving clients worldwide 🌍<br>US-based</p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Working Hours</h4>
+                                <p>Monday - Friday: 9am - 6pm WAT<br>Urgent requests: 24/7 support</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" name="name" class="form-control" placeholder="John Smith" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" class="form-control" placeholder="john@business.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="service">Service Interested In</label>
+                                <select id="service" name="service" class="form-control" required>
+                                    <option value="">Select a service</option>
+                                    <option value="travel">Travel Website Design</option>
+                                    <option value="saas">SaaS Dashboard Design</option>
+                                    <option value="ecommerce">E-commerce Optimization</option>
+                                    <option value="emergency">Website Emergency Fix</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Project Details</label>
+                                <textarea id="message" name="message" class="form-control" placeholder="Tell me about your project..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary" id="submitBtn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+<!-- Service Detail Pages with Images -->
+<style>
+/* Updated Service Detail Styles */
+.service-hero {
+  height: 400px;
+  border-radius: 10px;
+  margin-bottom: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.service-content img {
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  margin: 1.5rem 0;
+}
+
+.service-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.service-gallery img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-gallery img:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.img-caption {
+  text-align: center;
+  font-style: italic;
+  color: var(--gray);
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.service-content-block {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.service-content-block.reverse {
+  flex-direction: row-reverse;
+}
+
+.service-content-text {
+  flex: 1;
+  min-width: 300px;
+}
+
+.service-content-img {
+  flex: 1;
+  min-width: 300px;
+}
+
+.service-content-img img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+</style>
+
+<!-- Travel Service Page -->
+<div id="travelPage" class="service-page">
+  <div class="container">
+    <div class="service-header">
+      <h2 class="section-title">Travel Website Design</h2>
+      <p class="section-subtitle">Creating unforgettable digital experiences for travel brands</p>
+    </div>
+    
+    <div class="service-hero">
+      <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Travel Website Design">
+    </div>
+    
+    <div class="service-content">
+      <div class="service-content-block">
+        <div class="service-content-text">
+          <h2>Transform Your Travel Business with Stunning Web Design</h2>
+          <p>In the competitive travel industry, your website is your digital storefront. I specialize in creating visually stunning, highly functional travel websites that not only showcase your destinations but also convert visitors into paying customers.</p>
+          <p>With expertise in travel booking systems, responsive design, and conversion optimization, I build websites that make planning trips effortless for your customers while maximizing your booking rates.</p>
+        </div>
+        <div class="service-content-img">
+          <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Travel Booking System">
+          <p class="img-caption">Seamless booking experience for travel websites</p>
+        </div>
+      </div>
+      
+      <h2>Key Features</h2>
+      <div class="service-features">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+          <h3 class="feature-title">Booking System Integration</h3>
+          <p class="feature-description">Seamless integration with popular booking platforms and custom reservation systems</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <h3 class="feature-title">Mobile-First Design</h3>
+          <p class="feature-description">Optimized for travelers researching on smartphones and tablets</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-images"></i>
+          </div>
+          <h3 class="feature-title">Visual Destination Showcase</h3>
+          <p class="feature-description">Stunning galleries and interactive maps to inspire wanderlust</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <h3 class="feature-title">Fast Loading Times</h3>
+          <p class="feature-description">Optimized performance for international travelers on various connections</p>
+        </div>
+      </div>
+      
+      <h2>Travel Website Gallery</h2>
+      <div class="service-gallery">
+        <div>
+          <img src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Travel Website Homepage">
+          <p class="img-caption">Homepage design for adventure travel company</p>
+        </div>
+        <div>
+          <img src="https://images.unsplash.com/photo-1488085061387-422e29b40080?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Destination Page">
+          <p class="img-caption">Destination detail page with interactive map</p>
+        </div>
+        <div>
+          <img src="https://images.unsplash.com/photo-1507699622108-4be3abd695ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Tour Booking Page">
+          <p class="img-caption">Tour booking page with date selection</p>
+        </div>
+      </div>
+      
+      <div class="service-content-block reverse">
+        <div class="service-content-text">
+          <h2>My Process</h2>
+          <p>Every travel website I create follows a proven process:</p>
+          <ol>
+            <li><strong>Discovery & Research:</strong> Understanding your target audience and business goals</li>
+            <li><strong>Competitive Analysis:</strong> Identifying what works in your niche and how to stand out</li>
+            <li><strong>Wireframing & Prototyping:</strong> Creating the blueprint for your user experience</li>
+            <li><strong>Visual Design:</strong> Crafting a stunning interface that reflects your brand</li>
+            <li><strong>Development:</strong> Building with modern technologies for performance and reliability</li>
+            <li><strong>Testing & Optimization:</strong> Ensuring everything works perfectly across devices</li>
+            <li><strong>Launch & Support:</strong> Going live and providing ongoing maintenance</li>
+          </ol>
+        </div>
+        <div class="service-content-img">
+          <img src="https://images.unsplash.com/photo-1506012787146-f92b2d7d6d96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Travel Website Design Process">
+          <p class="img-caption">Design process for luxury travel website</p>
+        </div>
+      </div>
+      
+      <button class="back-button">Back to Services</button>
+    </div>
+  </div>
+</div>
+
+<!-- SaaS Service Page -->
+<div id="saasPage" class="service-page">
+  <div class="container">
+    <div class="service-header">
+      <h2 class="section-title">SaaS Dashboard UX Design</h2>
+      <p class="section-subtitle">Creating intuitive interfaces that users love</p>
+    </div>
+    
+    <div class="service-hero">
+      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="SaaS Dashboard Design">
+    </div>
+    
+    <div class="service-content">
+      <div class="service-content-block">
+        <div class="service-content-text">
+          <h2>Elevate Your SaaS Product with Exceptional UX</h2>
+          <p>A well-designed dashboard can make or break your SaaS product. I specialize in creating clean, intuitive interfaces that help users accomplish their goals efficiently, reducing churn and increasing customer satisfaction.</p>
+          <p>Through careful user research and data-driven design decisions, I transform complex workflows into simple, enjoyable experiences that keep users engaged with your product.</p>
+        </div>
+        <div class="service-content-img">
+          <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="SaaS Dashboard Example">
+          <p class="img-caption">Analytics dashboard for SaaS product</p>
+        </div>
+      </div>
+      
+      <h2>Key Features</h2>
+      <div class="service-features">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-tachometer-alt"></i>
+          </div>
+          <h3 class="feature-title">Custom Dashboards</h3>
+          <p class="feature-description">Personalized views tailored to different user roles and needs</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-chart-pie"></i>
+          </div>
+          <h3 class="feature-title">Data Visualization</h3>
+          <p class="feature-description">Clear, actionable insights from complex datasets</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-sliders-h"></i>
+          </div>
+          <h3 class="feature-title">Intuitive Controls</h3>
+          <p class="feature-description">Effortless interaction patterns that reduce cognitive load</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-bell"></i>
+          </div>
+          <h3 class="feature-title">Smart Notifications</h3>
+          <p class="feature-description">Contextual alerts that inform without overwhelming users</p>
+        </div>
+      </div>
+      
+      <h2>SaaS Dashboard Gallery</h2>
+      <div class="service-gallery">
+        <div>
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Dashboard Overview">
+          <p class="img-caption">Dashboard overview with key metrics</p>
+        </div>
+        <div>
+          <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Data Visualization">
+          <p class="img-caption">Advanced data visualization techniques</p>
+        </div>
+        <div>
+          <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="User Settings">
+          <p class="img-caption">User settings and preferences panel</p>
+        </div>
+      </div>
+      
+      <div class="service-content-block reverse">
+        <div class="service-content-text">
+          <h2>My Approach</h2>
+          <p>Creating exceptional SaaS experiences requires a methodical approach:</p>
+          <ol>
+            <li><strong>User Research:</strong> Understanding your users' goals, pain points, and workflows</li>
+            <li><strong>Information Architecture:</strong> Organizing features and content logically</li>
+            <li><strong>Interaction Design:</strong> Crafting intuitive flows and micro-interactions</li>
+            <li><strong>Visual Design:</strong> Establishing a consistent, professional look and feel</li>
+            <li><strong>Prototyping & Testing:</strong> Validating designs with real users before development</li>
+            <li><strong>Implementation Support:</strong> Working closely with developers to ensure quality</li>
+            <li><strong>Performance Monitoring:</strong> Tracking UX metrics post-launch for continuous improvement</li>
+          </ol>
+        </div>
+        <div class="service-content-img">
+          <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="SaaS Design Process">
+          <p class="img-caption">User testing session for SaaS dashboard</p>
+        </div>
+      </div>
+      
+      <button class="back-button">Back to Services</button>
+    </div>
+  </div>
+</div>
+
+<!-- E-commerce Service Page -->
+<div id="ecommercePage" class="service-page">
+  <div class="container">
+    <div class="service-header">
+      <h2 class="section-title">E-commerce Optimization</h2>
+      <p class="section-subtitle">Turning browsers into buyers with strategic design</p>
+    </div>
+    
+    <div class="service-hero">
+      <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="E-commerce Optimization">
+    </div>
+    
+    <div class="service-content">
+      <div class="service-content-block">
+        <div class="service-content-text">
+          <h2>Boost Your Online Sales with Conversion-Focused Design</h2>
+          <p>In the competitive world of e-commerce, every detail matters. I specialize in optimizing online stores to reduce friction, build trust, and guide visitors toward making purchases.</p>
+          <p>By combining conversion psychology with beautiful design, I create shopping experiences that not only look great but also significantly increase your average order value and reduce cart abandonment.</p>
+        </div>
+        <div class="service-content-img">
+          <img src="https://images.unsplash.com/photo-1607082350899-7e105aa886ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="E-commerce Product Page">
+          <p class="img-caption">Optimized product page for fashion e-commerce</p>
+        </div>
+      </div>
+      
+      <h2>Key Features</h2>
+      <div class="service-features">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-search"></i>
+          </div>
+          <h3 class="feature-title">Enhanced Product Discovery</h3>
+          <p class="feature-description">Intuitive navigation and filtering to help customers find what they need</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-shopping-basket"></i>
+          </div>
+          <h3 class="feature-title">Streamlined Checkout</h3>
+          <p class="feature-description">Reduced steps and friction to minimize cart abandonment</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-mobile"></i>
+          </div>
+          <h3 class="feature-title">Mobile Shopping Experience</h3>
+          <p class="feature-description">Optimized for the growing number of mobile shoppers</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-tags"></i>
+          </div>
+          <h3 class="feature-title">Personalized Recommendations</h3>
+          <p class="feature-description">Smart upselling and cross-selling based on customer behavior</p>
+        </div>
+      </div>
+      
+      <h2>E-commerce Gallery</h2>
+      <div class="service-gallery">
+        <div>
+          <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Product Listing">
+          <p class="img-caption">Product listing with filter options</p>
+        </div>
+        <div>
+          <img src="https://images.unsplash.com/photo-1607082349566-00791847e080?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Shopping Cart">
+          <p class="img-caption">Shopping cart with upsell suggestions</p>
+        </div>
+        <div>
+          <img src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Checkout Process">
+          <p class="img-caption">Streamlined checkout process</p>
+        </div>
+      </div>
+      
+      <div class="service-content-block reverse">
+        <div class="service-content-text">
+          <h2>My Methodology</h2>
+          <p>E-commerce optimization requires a comprehensive approach:</p>
+          <ol>
+            <li><strong>Audit & Analysis:</strong> Identifying conversion barriers through analytics and user testing</li>
+            <li><strong>Strategic Planning:</strong> Developing a roadmap for improvements with the highest ROI</li>
+            <li><strong>UX Optimization:</strong> Redesigning key flows (product pages, cart, checkout)</li>
+            <li><strong>Visual Enhancement:</strong> Creating compelling product presentations and brand experiences</li>
+            <li><strong>Trust Building:</strong> Implementing security indicators and social proof elements</li>
+            <li><strong>A/B Testing:</strong> Validating changes through controlled experiments</li>
+            <li><strong>Performance Monitoring:</strong> Tracking key metrics and continuously optimizing</li>
+          </ol>
+        </div>
+        <div class="service-content-img">
+          <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="E-commerce Analytics">
+          <p class="img-caption">Conversion analytics dashboard for e-commerce</p>
+        </div>
+      </div>
+      
+      <button class="back-button">Back to Services</button>
+    </div>
+  </div>
+</div>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <div class="logo">
+                        <div class="logo-icon">F</div>
+                        <div class="logo-text">Frank<span>Design</span></div>
+                    </div>
+                    <p>Creating high-conversion websites for travel brands and SaaS startups worldwide.</p>
+                    <div class="social-links">
+<a class="Instagram " href="https://www.instagram.com/frank_design1?igsh=MWU0MWpocTBhYmJ6ZQ%3D%3D&utm_source=qr" target="_blank" rel="noopener" title="Chat with us on Instagram "><i class="fab fa-instagram"></i></a>
+<a class="Twitter " href="https://x.com/franklinod63432?s=21" title="Chat with us on X "><i class="fab fa-twitter"></i></a>
+
+<a class="Linkedin " href="https://www.linkedin.com/in/franklin-odiana-1a6786370?trk=contact-info" title="Chat with us on Lnkedin "><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" class="service-footer-link" data-service="travel">Travel Website Design</a></li>
+                        <li><a href="#" class="service-footer-link" data-service="saas">SaaS Dashboard UX</a></li>
+                        <li><a href="#" class="service-footer-link" data-service="ecommerce">E-commerce Optimization</a></li>
+                        <li><a href="#contact">Website Emergency Fix</a></li>
+                        <li><a href="#contact">Landing Page Design</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> franklinodiana1@gmail.com</li>
+                        <li><i class="fas fa-globe"></i> Based in US, serving worldwide</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 9am-6pm WAT</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Franklin Design. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize EmailJS with your user ID
+        emailjs.init("sVSbckIcYcsnFibWD"); // Replace with your actual EmailJS user ID
+        
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#navMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if(this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    
+                    document.querySelector(targetId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Portfolio filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filterValue = button.textContent;
+                
+                portfolioItems.forEach(item => {
+                    if (filterValue === 'All' || item.querySelector('.portfolio-category').textContent.includes(filterValue)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Service Page Navigation
+        const homePage = document.getElementById('homePage');
+        const serviceLinks = document.querySelectorAll('.service-link, .service-footer-link');
+        const backButtons = document.querySelectorAll('.back-button');
+        
+        serviceLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const service = this.getAttribute('data-service');
+                
+                // Hide home page
+                homePage.style.display = 'none';
+                
+                // Hide all service pages
+                document.querySelectorAll('.service-page').forEach(page => {
+                    page.style.display = 'none';
+                });
+                
+                // Show the selected service page
+                document.getElementById(`${service}Page`).style.display = 'block';
+                
+                // Scroll to top
+                window.scrollTo(0, 0);
+            });
+        });
+        
+        // Back to services functionality
+        backButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Hide all service pages
+                document.querySelectorAll('.service-page').forEach(page => {
+                    page.style.display = 'none';
+                });
+                
+                // Show home page
+                homePage.style.display = 'block';
+                
+                // Scroll to services section
+                document.getElementById('services').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // EmailJS Form Submission
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        
+        function showNotification(message, type) {
+            const notificationArea = document.getElementById('notificationArea');
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            notificationArea.appendChild(notification);
+            
+            // Show notification
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 10);
+            
+            // Remove notification after 5 seconds
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 5000);
+        }
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Add loading state
+            contactForm.classList.add('form-loading');
+            submitBtn.innerHTML = 'Sending <i class="fas fa-spinner fa-spin"></i>';
+            
+            // Prepare form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                service: document.getElementById('service').value,
+                message: document.getElementById('message').value
+            };
+            
+            // Send email using EmailJS
+            emailjs.send(
+                'service_yhhuu49', // Replace with your EmailJS Service ID
+                'template_5uky8lv', // Replace with your EmailJS Template ID
+                formData
+            )
+            .then(function(response) {
+                console.log('SUCCESS!', response.status, response.text);
+                showNotification('Message sent successfully! I will get back to you soon.', 'success');
+                contactForm.reset();
+            }, function(error) {
+                console.log('FAILED...', error);
+                showNotification('Failed to send message. Please try again later.', 'error');
+            })
+            .finally(function() {
+                // Remove loading state
+                contactForm.classList.remove('form-loading');
+                submitBtn.innerHTML = 'Send Message';
+            });
+        });
+    </script>
+</body>
+</html>
